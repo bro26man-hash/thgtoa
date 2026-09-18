@@ -1,198 +1,177 @@
-# RESEARCH_NOTES.md — Podcast Episode: Digital Rights & Surveillance Technology
+# 🎙️ Podcast Research Notes: Digital Rights & Surveillance Technology
 
 > **Source project:** [Anon-Planet/thgtoa](https://github.com/Anon-Planet/thgtoa) — *The Hitchhiker's Guide to Online Anonymity & OpSec*
-> **Forked to:** `bro26man-hash/thgtoa`
-> **Stars:** 849 | **Forks:** 78 | **License:** CC-BY-SA-4.0
-> **Website:** https://anonymousplanet.net/
+> **Stars:** 849 | **Forks:** 78 | **License:** CC-BY-SA-4.0 | **Mission:** Written for activists, journalists, scientists, lawyers, whistle-blowers, and anyone being oppressed, censored, or harassed.
+>
+> **Corroborating project:** [Flock-You-Android](https://github.com/MaxwellDPS/Flock-You-Android) — *Open-Source Counter-Surveillance for Android* (106 stars)
 
 ---
 
 ## 1. Project Overview
 
-**THGTOA** (The Hitchhiker's Guide to Online Anonymity) is a community-written, open-source guide covering online tracking techniques, identity verification methods, and detailed instructions for creating and maintaining truly anonymous online identities. It is explicitly written for **activists, journalists, scientists, lawyers, whistle-blowers, and people being oppressed, censored, and harassed**. It has no affiliation with the Anonymous collective and is not sponsored by any commercial or governmental entity.
+**thgtoa** (The Hitchhiker's Guide to Online Anonymity) is a comprehensive, community-written guide covering online tracking techniques, ID verification methods, and practical guidance for creating and maintaining truly anonymous online identities. It is:
 
-The guide covers:
-- **Network anonymity:** Tor, Whonix, Tails, VPN-over-Tor, Tor-over-VPN, bridges
-- **Cryptocurrency privacy:** Bitcoin mixing (CoinJoin), Monero, Zcash, atomic swaps
-- **Hardware tamper protection:** HEADS firmware, PureBoot, evil-maid defenses
-- **Operating system security:** Qubes OS, VM isolation, stack protection
-- **Counter-surveillance:** Detecting and defending against tracking devices (ALPR cameras, body cams, BLE trackers, drones)
-- **Operational security (OpSec):** Threat modeling, compartmentalization, communication security
+- **Explicitly political** — Written with hope for people being oppressed by governments, corporations, and other power structures.
+- **Non-commercial** — No ads, no affiliate links, no governmental or corporate sponsorship. All donations are publicly logged.
+- **Freely licensed** — CC-BY-SA-4.0, meaning anyone can use it even commercially as long as they attribute.
+- **Built on Tor/Whonix/Tails** — The core toolchain reflects the decades-long fight for anonymous communication.
 
-The project is maintained by a small, largely anonymous group of contributors. The primary maintainer (`nopeitsnothing`) is a community member (not the original author) who has been working to reorganize the guide into chapters and improve the PDF toolchain.
+**Flock-You-Android** is a complementary project: a real-world counter-surveillance app that detects surveillance devices (BLE trackers, IMSI catchers, Flock Safety cameras, drones, etc.) entirely on-device with zero cloud connectivity. Its tagline says it all: **"Watch the Watchers."**
 
 ---
 
-## 2. Societal Concerns & Ethical Tensions
+## 2. Key Societal Concerns
 
-### 2.1 The "You Cannot Trust" Paradigm
+### 2.1 The Normalization of Mass Surveillance
+- **Flock cameras** (license plate readers), **IMSI catchers** (StingRay devices), and **commercial trackers** (AirTags, Bluetooth beacons) have become ubiquitous.
+- The guide documents these techniques matter-of-factly — which itself is a commentary on how normalized surveillance has become.
+- **Podcast angle:** When does detection become acceptance? Does knowing about surveillance empower us, or does it just teach us to live under it?
 
-The guide's foundational premise — articulated by a community member — is a list of entities you **cannot trust**:
+### 2.2 The Surveillance Paradox (from Flock-You's own README)
+> *"To detect if you're being surveilled, this app must collect data about its environment."*
 
-> You cannot trust ISPs. You cannot trust VPS providers. You cannot trust public Wi-Fi providers. You cannot trust Mobile Network providers. You cannot trust VPN providers. You cannot trust any Online Platform. You cannot trust Tor.
+This is the **deepest ethical tension** in the entire space:
+- Any counter-surveillance tool must observe to protect, creating a feedback loop.
+- If your device is seized, detection history reveals your location history and movement patterns.
+- Flock-You's own documentation acknowledges this forensic risk and recommends ephemeral mode and minimum retention.
 
-This is not cynicism — it's a **threat-modeling framework**. The guide argues that trust should be based on proven technical properties, not brand reputation or legal jurisdiction. This raises a profound question for the podcast: **Is radical distrust of institutions a rational response to documented surveillance, or does it erode the social trust that democracy requires?**
+**Podcast angle:** Is there such a thing as a truly privacy-preserving surveillance detector? Or is every detection tool also a tracking tool?
 
-### 2.2 The Bitcoin vs. Monero Debate (Issue #154)
+### 2.3 The Economics of Privacy
+- Issue **#359** (VPN Section) raises a critical question: **ProtonVPN has a free tier.** The guide's maintainer flagged this with the label "invalid" and "uh what??", but the underlying question remains: *If a privacy service is free, are you the product?*
+- Mullvad is discontinuing OpenVPN support in favor of WireGuard — and the community is divided on whether WireGuard is truly more private.
 
-One of the most heated community discussions centered on whether the guide should include **Bitcoin mixing/obfuscation techniques** (CoinJoin, Whirlpool, etc.) or recommend **Monero** as the only truly anonymous cryptocurrency.
+**Podcast angle:** The "if you're not paying, you're the product" mantra is simplistic. When a VPN is free, what's the actual data pipeline? When a guide is free (but donation-funded), who owns the direction?
 
-**Key arguments from both sides:**
+### 2.4 The Arms Race of Surveillance Technology
+- Flock-You detects **75+ device signatures** across 7 protocols (BLE, WiFi, Cellular, GNSS, Ultrasonic, RF, Satellite).
+- Each detection capability represents a surveillance capability that has been miniaturized, commercialized, and deployed.
+- The guide covers **Tor circuit fingerprinting attacks, traffic analysis, Sybil attacks, and deep learning-based deanonymization** (from the OPSEC companion repo).
 
-| Pro-Monero (annoyed/ghost) | Pro-BTC-mixing (dan-kir) |
-|---|---|
-| Monero provides real anonymity; BTC mixing is "silly" obfuscation | XMR isn't accepted everywhere — SR Securities, Signal donations, Mullvad VPN historically |
-| "Ultra paranoid" Zcash + Monero is overkill | Sometimes Best Effort匿名 is better than no匿名 |
-| Mixing can be de-anonymized with enough resources | The guide itself accepts BTC donations — shouldn't it show how to do so privately? |
-| "Closed, see #158" (maintainer's resolution) | Atomic swaps are coming to Samourai/Sparrow wallets |
-
-**Podcast angle:** This debate mirrors a larger societal tension — **the conflict between ideological purity and pragmatic adoption**. If the only truly private tool isn't widely accepted, do you recommend it anyway (potentially isolating users) or recommend the widely-accepted-but-less-private option (potentially creating a false sense of security)? This is the **privacy version of the "vote with your dollars" dilemma**.
-
-### 2.3 The Accessibility vs. Security Conservatism Debate (Issue #31)
-
-A detailed review by `Lefty-Insider` (a person with disabilities who relies on screen readers) called out the guide's **poor PDF formatting, lack of hyperlinked TOC, and inaccessible design**. The maintainer's responses reveal a **deep tension**:
-
-- The maintainer acknowledged the issues but explained that the toolchain (Pandoc → Markdown → PDF) limits formatting control
-- A full LaTeX rewrite was planned but never completed (the original author left)
-- The guide is **intentionally conservative** in its recommendations — it only suggests tools with "well-understood security properties"
-
-The maintainer stated:
-> I'd rather give people a small set of trustworthy options, as opposed to giving people a large set of less-proven options, which could put certain readers at risk if the recommendation turns out to be premature.
-
-**Podcast angle:** This is the **"safety vs. inclusion" dilemma** that recurs across civil liberties movements. How do you make security tools accessible to non-technical users without diluting the security guarantees? When does accessibility become a form of exclusion? And who gets to decide what's "safe enough" — especially when the stakes are literally life and death for some readers?
-
-### 2.4 The Hardware Security Gap (Issues #313, #335)
-
-Two open issues reveal a **critical blind spot** in the privacy guide: **physical hardware security**.
-
-- **Issue #313** requests adding **HEADS** (open-source custom firmware for physical tamper protection) to the guide's section on physically tamper-protecting laptops. The current guide covers software-level defenses but doesn't address firmware-level attacks.
-- **Issue #335** highlights that **Windows 11's Hardware-enforced Stack Protection** (a security feature) conflicts with anti-cheat software, creating a dilemma: gamers must choose between **playing games** and **maintaining system security**. The maintainer notes that anti-cheat vendors are "lazy" for not completing Microsoft's vetting process.
-
-**Podcast angle:** The **"security for whom?"** question. Privacy guides often focus on a specific user profile (Qubes OS + Whonix + Tor Browser on a dedicated laptop). But what about:
-- **Gamers** who can't disable stack protection without breaking games?
-- **People with disabilities** who rely on specific hardware/software configurations?
-- **People in authoritarian regimes** who need physical tamper protection because the state can seize their devices?
-
-The guide's implicit user is a **privileged, technically competent, non-gamer with no physical accessibility needs**. That's a problem when the guide is meant for everyone.
+**Podcast angle:** Every counter-surveillance breakthrough is matched by a surveillance breakthrough. Is this an infinite spiral, or is there a frontier where privacy can actually win?
 
 ---
 
-## 3. Civil Liberties & Surveillance Concerns
+## 3. Ethical Tensions
 
-### 3.1 The FBI's Drive-By Exploit Precedent
+### 3.1 Knowledge as a Double-Edged Sword
+- thgtoa explicitly states it has **no affiliation with the Anonymous hacker collective**, despite the name. This disclaimer exists because the knowledge in the guide can be used for both liberation and manipulation.
+- The guide covers tracking techniques, ID verification, and deanonymization — knowledge that can protect activists but also enable stalkers.
 
-The maintainer explicitly references the FBI's use of **drive-by Firefox exploits** to deanonymize darknet vendors and other targets:
+**Podcast question:** Does a comprehensive privacy guide have a responsibility to gatekeep? Or does gatekeeping itself become a form of surveillance (who gets to decide what you're allowed to know)?
 
-> The FBI has done this before for darknet vendors and other reasons I won't discuss here.
+### 3.2 The Trust Model of Privacy Tools
+Flock-You offers three build variants with different trust assumptions:
 
-This is a documented civil liberties concern: **law enforcement agencies have deployed zero-day exploits against individuals using privacy tools**, raising questions about:
-- **Due process:** Was a warrant required? Was the target identified before the exploit?
-- **Scale of surveillance:** If the FBI exploits Tor Browser vulnerabilities, what does that mean for all Tor users?
-- **Vulnerability hoarding:** Should governments disclose security flaws to vendors (as per the VEP) or stockpile them for surveillance?
-
-### 3.2 Anti-Cheat Software as a Security Threat
-
-Issue #335 reveals that **anti-cheat software (e.g., BattlEye) explicitly recommends disabling hardware stack protection**, which:
-- Creates a downgrade attack vector for malware
-- Forces users to choose between entertainment and security
-- Has no transparency — vendors won't explain what their software does because "it would defeat the purpose of Anti Cheat"
-
-**Podcast angle:** This is **surveillance infrastructure masquerading as consumer software**. Anti-cheat systems run at the kernel level, can access all processes on a machine, and often have minimal oversight. The line between "anti-cheat" and "surveillance" is dangerously thin.
-
-### 3.3 The Mobile Phone Exclusion
-
-The maintainer is explicit: **the guide doesn't cover mobile phones because cellular devices are not recommended for privacy**. The rationale:
-- No expectation of privacy without severely limiting usability
-- The maintainer doesn't use a cell phone and "doesn't know any reason you would want to use one"
-- There are already separate guides for mobile OS privacy
-
-**Podcast angle:** This is a **philosophy vs. reality** conflict. For:
-- **Activists in authoritarian states:** A smartphone is a lifeline — you can't organize without one
-- **Journalists:** Sources contact you via Signal/WhatsApp — you can't ignore mobile
-- **Economically marginalized people:** A smartphone may be the only computing device they can afford
-
-The guide's assumption of a computer-only user reflects a **class and geography bias**. Privacy advice that requires $2,000 in hardware and advanced technical knowledge is **privileged privacy**.
-
-### 3.4 The "Known to Work" Conservatism
-
-The maintainer's insistence on only recommending tools with "well-understood security properties" reflects a **risk-averse philosophy**:
-- Tor is recommended because "no network overlay has yet to be able to compete with Tor for high threat models"
-- VPNs are recommended because "their limitations are well-understood due to the review they've received over the course of multiple decades"
-- Mixnets are excluded because they are "new and unproven"
-
-**Podcast angle:** This is the **innovation vs. caution tension** in privacy tech. The unemployment of new tools (I2P, mixnets, dVPNs) isn't just about theoretical risk — it's about **who gets left behind** when the "proven" tools are itself compromised (as the FBI's Tor exploit showed). **Conservative privacy advice can become obsolete advice.**
-
----
-
-## 4. Community Dynamics & Governance
-
-### 4.1 Anonymity of the Maintainers
-
-The original author(s) remain unidentified. The primary maintainer (`nopeitsnothing`) is a community member who stepped in to maintain the project. This creates interesting questions:
-- **Accountability:** How do you ensure a guide that could mean the difference between freedom and imprisonment is accurate, when the authors are anonymous?
-- **Sustainability:** What happens if the maintainer burns out? The project has 7 open issues and a small community.
-- **Trust:** The guide's CC-BY-SA-4.0 license and Open Collective donations provide some accountability, but the core content is written by ghosts.
-
-### 4.2 The "Too Heated" Lock (Issue #31)
-
-Issue #31 was **locked as "too heated"** — a rare GitHub action. The discussion about document accessibility turned into a **flame war** with personal criticisms, misunderstanding of contribution processes, and mutual frustration. This reveals:
-- **Power asymmetry:** The maintainers hold enormous influence over what gets included in the guide, but contributors can't easily effect change
-- **Cultural clash:** The maintainer's technical-writing, incremental-update approach clashes with external contributors' desire for fundamental restructuring
-- **Emotional stakes:** For people who may face imprisonment for their anonymity, the guide isn't academic — it's survival
-
----
-
-## 5. Recommended Podcast Angles & Story Ideas
-
-### Angle A: "The Privacy Privilege Paradox"
-The guide's recommendations require expensive hardware, advanced technical knowledge, and a lifestyle that doesn't include gaming or mobile phones. Who gets to be "private" in the digital age? Explore how privacy tools reproduce existing inequalities.
-
-### Angle B: "When the FBI Hacks Tor"
-The documented case of the FBI's drive-by exploit against Tor users. What does it mean when the world's most famous privacy tool is compromised by law enforcement? And why doesn't this make headlines?
-
-### Angle C: "The Bitcoin vs. Monero Culture War"
-The community's bitter debate over whether to recommend "impure" Bitcoin mixing or "pure" Monero. This mirrors larger cultural fights in the crypto world about what privacy *means* — and whether ideological purity is a luxury you can afford when your life depends on it.
-
-### Angle D: "Anti-Cheat Software Is Surveillance Software"
-The发现 that BattlEye and other anti-cheat systems recommend disabling hardware security features. Where's the line between game protection and system surveillance? And why do gamers silently comply?
-
-### Angle E: "The Accessibility Gap in Digital Rights"
-A disabled community member called for better PDF formatting and was met with maintainer resistance. What does it mean when the civil liberties movement lets accessibility slide? And who is the "digital rights" movement actually for?
-
-### Angle F: "Anonymous Authors, Life-or-Death Stakes"
-The guide's original authors are anonymous. The maintainer is a community member. The guide has been cited in court cases, academic papers, and real-world asylum claims. How do you build accountability when anonymity is the point?
-
-### Angle G: "The Mobile Phone Dilemma"
-The guide says: don't use smartphones. But for billions of people, a smartphone is their only internet access. For activists, it's a lifeline. The guide's computer-first worldview is a form of **digital colonialism** — imposing Western technologist assumptions on a global audience.
-
----
-
-## 6. Key Resources & References
-
-| Resource | Link | Relevance |
+| Trust Level | Variant | Risk |
 |---|---|---|
-| THGTOA Guide | https://anonymousplanet.net/ | Full guide content |
-| GitHub Repository | https://github.com/Anon-Planet/thgtoa | Source code & issues |
-| Open Collective | https://opencollective.com/thgtoa | Donation/financial transparency |
-| HEADS Firmware | https://osresearch.net/ | Physical tamper protection (Issue #313) |
-| BattlEye FAQ | https://www.battleye.com/support/faq/ | Stack protection conflict (Issue #335) |
-| Microsoft Stack Protection Blog | https://techcommunity.microsoft.com/t5/windows-os-platform-blog/understanding-hardware-enforced-stack-protection/ba-p/1247815 | Technical background on stack protection |
-| Code of Conduct | https://anonymousplanet.org/export/CODE_OF_CONDUCT.html | Community governance |
-| CC-BY-SA-4.0 License | https://creativecommons.org/licenses/by-sa/4.0/ | Copyleft content licensing |
+| **Maximum caution** | Sideload (build from source) | Requires technical skill |
+| **Trust maintainers** | System (pre-signed APK) | Maintainers could compromise the build |
+| **Trust platform** | OEM (platform-signed) | OEM could backdoor the app |
+
+This is a **citation of the fundamental problem**: privacy tools require trust, and trust is a vulnerability.
+
+**Podcast angle:** Every "privacy-first" tool asks you to trust someone. The chain of trust is only as strong as its weakest link — and that link is often human.
+
+### 3.3 State-Level Threat Models vs. Everyday Privacy
+- Issue **#313** (Tamper Protection: Add HEADS) discusses **HEADS firmware** — an open-source custom firmware for physical security against evil-maid attacks.
+- The maintainer (nopeitsnothing) noted HEADS is "not dead, just sleeping" despite being abandoned.
+- A community member pointed out HEADS is unmaintained, and the maintainer still wants to include it.
+
+**Podcast tension:** Should a privacy guide recommend tools that are no longer maintained? Is it better to document an imperfect solution than to leave people unprotected? Or does recommending abandoned tools create false security?
+
+### 3.4 AI in the Loop: Surveillance Powered by Machine Learning
+- Flock-You's **"AI-Powered Analysis"** feature (Issue #24) uses on-device LLMs (Gemini Nano, Gemma) to prioritize threats.
+- This creates a recursion: **AI is used to detect AI-powered surveillance** (facial recognition, automated tracking, predictive policing).
+- The feature is currently broken (Gemini Nano fails to initialize, Gemma downloads loop), which is itself a metaphor: **AI-powered privacy tools are only as reliable as the AI they're built on.**
+
+**Podcast angle:** When you use AI to fight AI surveillance, are you upgrading your defense or upgrading the enemy's offense? The same technology that powers Flock-You's threat detection powers the surveillance it's trying to detect.
 
 ---
 
-## 7. Open Issues for Follow-Up
+## 4. Civil Liberties Framing
 
-| # | Title | Status | Podcast Relevance |
-|---|---|---|---|
-| #159 | VPN SECTION | Open | Why is a VPN section controversial? |
-| #354 | Blink Comparison | Open | New privacy browser — worth comparing? |
-| #352 | Consideration for Brave Search | Open | Privacy browser ecosystem dynamics |
-| #343 | Whonix route update for 17.x | Open (sticky) | Tor/VPN configuration best practices |
-| #335 | Core isolation & stack protection | Open (5 comments) | Gaming vs. security tension |
-| #313 | Tamper protection: add HEADS | Open (2 comments) | Physical security gaps in the guide |
+### 4.1 Privacy as a Precondition for Other Rights
+- thgtoa's mission statement is explicit: the guide is written for **"activists, journalists, scientists, lawyers, whistle-blowers, and good people being oppressed, censored, and harassed."**
+- This frames privacy not as a consumer preference but as a **civil liberties infrastructure** — you can't speak freely, organize, or investigate if you're being tracked.
+
+**Podcast thesis:** Privacy is the *operating system* of all other rights. Without it, free speech, assembly, and due process become performance art.
+
+### 4.2 The Corporate Surveillance State
+- Flock-You detects **Flock Safety cameras** — a company that provides ALPR (Automated License Plate Recognition) to police departments across the US.
+- The guide documents **RTMP, WebRTC, and tracking beacon** techniques used by advertisers.
+- Issue **#352** (Brave Search Consideration) asks whether a privacy-respecting search engine should be recommended — suggesting the community is actively evaluating the trustworthiness of "privacy alternatives."
+
+**Podcast angle:** Corporate surveillance is harder to flee than state surveillance because it's woven into commerce itself. You can't avoid a company that tracks you without avoiding commerce — and the "privacy alternatives" (Brave Search, privacy-respecting browsers) are often funded by the same data economy they claim to oppose.
+
+### 4.3 The Chilling Effect
+- The existence of thgtoa and Flock-You as open-source projects implies that the *need* for them is widely felt.
+- But the fact that these projects are niche (849 and 106 stars respectively) suggests most people either **don't know surveillance is a problem** or **feel powerless about it**.
+
+**Podcast angle:** The chilling effect isn't just about what people self-censor. It's about what people *don't even try to protect* because they don't know it's worth protecting.
 
 ---
 
-*Notes compiled for podcast research. Forked from Anon-Planet/thgtoa on 2026-09-18.*
+## 5. Open Issues & Community Discussions
+
+| Issue | Project | Ethical Dimension |
+|---|---|---|
+| **#359** — VPN Section | thgtoa | Economics of privacy: Is a free VPN compatible with privacy? Community labeled it "invalid" — does dismissing economic critique suppress important questions? |
+| **#313** — HEADS Tamper Protection | thgtoa | Should guides recommend abandoned tools? Is "better protection than nothing" ethically defensible? |
+| **#352** — Brave Search Consideration | thgtoa | Evaluating the trustworthiness of "privacy alternatives" — who audits the auditors? |
+| **#335** — Core Isolation for Gamers | thgtoa | Hardware-level security features (core isolation, stack protection) — how deep does the rabbit hole go? |
+| **#24** — AI-Powered Analysis | Flock-You | Using on-device AI for threat detection — same technology that powers surveillance. Reliability concerns compound the ethical question. |
+
+---
+
+## 6. Podcast Episode Angles
+
+### 🎯 Angle A: "The Surveillance Paradox"
+We build tools to detect surveillance, but those tools must observe to function. Every detector is also a tracker. Where does the irony end?
+
+### 🎯 Angle B: "Who Gets to Tell You What's Private?"
+A volunteer-run guide with 849 contributors decides what privacy advice is "correct." When a community member suggests a free VPN, the maintainer says "invalid." Who owns the definition of privacy?
+
+### 🎯 Angle C: "The AI Eyes"
+AI powers both the surveillance (facial recognition, predictive policing) and the counter-surveillance (Flock-You's threat detection). Are we training the very system we're trying to escape?
+
+### 🎯 Angle D: "Abandoned Tools & False Security"
+Should a privacy guide recommend software that no one maintains? What's worse: no protection, or protection you think works but doesn't?
+
+### 🎯 Angle E: "The Digital Rights Civil War"
+Privacy advocates build tools; surveillance agencies build counters; corporations build products that harvest the detritus. Who's winning? And does it matter if the tools exist but nobody uses them?
+
+---
+
+## 7. Key Quotes for the Episode
+
+> *"It is written with hope for activists, journalists, scientists, lawyers, whistle-blowers, and good people being oppressed, censored, and harassed anywhere!"*
+> — thgtoa README
+
+> *"To detect if you're being surveilled, this app must collect data about its environment."*
+> — Flock-You README, "The Surveillance Paradox"
+
+> *"If you aren't paying, you're the product."*
+> — Community comment, thgtoa Issue #359
+
+> *"HEADS is not dead, imo. Just sleeping."*
+> — nopeitsnothing, thgtoa Issue #313
+
+> *"This software is intended for authorized security research, personal privacy protection, and educational purposes."*
+> — Flock-You Legal Disclaimer (with the implicit question: who decides what's "authorized"?)
+
+---
+
+## 8. Recommended Further Research
+
+- **EFF (Electronic Frontier Foundation)** — eff.org — The legal and advocacy backbone of digital rights
+- **ACLU** — aclu.org — Civil liberties litigation and policy work
+- **TTPSA / Deflock** — deflock.me — ALPR camera locations database
+- **OpenCellID** — opencellid.org — Cell tower database for detecting IMSI catchers
+- **WiGLE** — wigle.net — Wireless network mapping (both protective and surveillance tool)
+- **HEADS Project** — osresearch.net — Physical tamper protection (abandoned but referenced)
+- **Tor Research** — The OPSEC companion repo contains 20+ academic papers on Tor deanonymization attacks
+
+---
+
+*Notes compiled from GitHub research on 2026-09-18. Forked from Anon-Planet/thgtoa for podcast episode preparation.*
